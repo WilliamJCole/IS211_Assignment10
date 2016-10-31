@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 """Query Pets"""
 
-import sqlite3 as lite
+import sqlite3
 import sys
 
 con = None
 
 
 try:
-    con = lite.connect('pets.db')
+    con = sqlite3.connect('pets.db')
     con.row_factory = lite.Row
 
     while True:
@@ -56,7 +56,7 @@ try:
                             petrow['age']) + ' years old.')
 
 
-except lite.Error as e:
+except sqlite3.Error as e:
     print "Closing."
     print "Error: %s " % e.args[0]
     sys.exit(1)

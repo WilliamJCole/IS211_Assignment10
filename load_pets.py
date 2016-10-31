@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 """Pets"""
 
-import sqlite3 as lite
+import sqlite3
 import sys
 
 con = None
 
 try:
-    con = lite.connect('pets.db')
+    con = sqlite3.connect('pets.db')
     cur = con.cursor()
 
     cur.executescript("""
@@ -36,9 +36,8 @@ try:
         INSERT INTO person_pet VALUES(4, 6);
         """)
     con.commit()
-    
 
-except lite.Error, e:
+except sqlite3.Error as e:
     if con:
         con.rollback()
     print "Error {0}".format(e.args[0])
